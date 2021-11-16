@@ -1,26 +1,34 @@
-import React from 'react';
-
+import React,{useContext,useEffect} from 'react';
+import { ProductContext } from '../../ProductContext';
+import {Postcontext} from '../../Postcontext';
+import { dataContext } from '../../dataContext';
 import './View.css';
 function View() {
+const {state}=useContext(Postcontext)
+const {product}=useContext(ProductContext)
+  useEffect(() => {
+    
+    
+  }, [])
   return (
     <div className="viewParentDiv">
       <div className="imageShowDiv">
         <img
-          src="../../../Images/R15V3.jpg"
+          src={product ? product.url:''}
           alt=""
         />
       </div>
       <div className="rightSection">
         <div className="productDetails">
-          <p>&#x20B9; 250000 </p>
-          <span>YAMAHA R15V3</span>
-          <p>Two Wheeler</p>
-          <span>Tue May 04 2021</span>
+          <p>&#x20B9; {product.price} </p>
+          <span>{product.name}</span>
+          <p>{product.category}</p>
+          <span>{product.createAt}</span>
         </div>
         <div className="contactDetails">
           <p>Seller details</p>
-          <p>No name</p>
-          <p>1234567890</p>
+          <p>{state ? state.username:''}</p>
+          <p>{state ? state.phonenumber:''}</p>
         </div>
       </div>
     </div>
